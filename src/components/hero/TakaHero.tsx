@@ -8,7 +8,7 @@ import TakaScene from "./TakaScene";
 
 export default function TakaHero() {
     return (
-        <section className="relative w-full h-screen bg-black overflow-hidden glow-border">
+        <section className="relative w-full h-screen bg-black overflow-hidden">
             {/* Top gradient glow - orange radial */}
             <div
                 className="absolute top-0 left-1/2 -translate-x-1/2 w-[1000px] h-[500px] pointer-events-none"

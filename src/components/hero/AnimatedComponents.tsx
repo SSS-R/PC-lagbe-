@@ -2,66 +2,97 @@
 
 import { useRef, useEffect, useState, useMemo } from "react";
 import { useFrame } from "@react-three/fiber";
+import { Sparkles } from "@react-three/drei";
 import * as THREE from "three";
 
 // ============== Energy Beam (Central Portal) ==============
+// ============== Energy Beam (Central Portal) ==============
 export function EnergyBeam() {
     const beamRef = useRef<THREE.Group>(null);
+    const coreRef = useRef<THREE.Mesh>(null);
     const glowRef = useRef<THREE.Mesh>(null);
+    const outerGlowRef = useRef<THREE.Mesh>(null);
 
     useFrame((state) => {
+        const time = state.clock.elapsedTime;
+
+        // High-frequency, small-amplitude flicker for laser-like intensity
+        const jitter = Math.sin(time * 50) * 0.05 + Math.cos(time * 120) * 0.05;
+
+        if (coreRef.current) {
+            coreRef.current.scale.x = 1 + jitter * 0.5;
+        }
+
         if (glowRef.current) {
-            // Pulsing glow effect
-            const pulse = Math.sin(state.clock.elapsedTime * 3) * 0.2 + 1;
-            glowRef.current.scale.x = pulse;
+            (glowRef.current.material as THREE.MeshBasicMaterial).opacity = 0.5 + jitter;
+        }
+
+        if (outerGlowRef.current) {
+            (outerGlowRef.current.material as THREE.MeshBasicMaterial).opacity = 0.1 + Math.sin(time * 10) * 0.05;
         }
     });
 
     return (
         <group ref={beamRef} position={[0, 0, 0]}>
-            {/* Core beam - bright white/orange center */}
-            <mesh>
-                <planeGeometry args={[0.08, 6]} />
+            {/* 1. The Core - Ultra sharp white/orange line */}
+            <mesh ref={coreRef}>
+                <planeGeometry args={[0.015, 20]} />
                 <meshBasicMaterial
                     color="#ffffff"
                     transparent
-                    opacity={0.95}
+                    opacity={1}
                     side={THREE.DoubleSide}
+                    blending={THREE.AdditiveBlending}
                 />
             </mesh>
 
-            {/* Inner glow - orange */}
+            {/* 2. Primary Energy Sheath - Hot Orange */}
             <mesh ref={glowRef}>
-                <planeGeometry args={[0.3, 6]} />
+                <planeGeometry args={[0.08, 20]} />
                 <meshBasicMaterial
-                    color="#FF6B00"
+                    color="#FF4800"
                     transparent
-                    opacity={0.6}
+                    opacity={0.8}
                     side={THREE.DoubleSide}
+                    blending={THREE.AdditiveBlending}
                 />
             </mesh>
 
-            {/* Outer glow - soft orange */}
-            <mesh>
-                <planeGeometry args={[0.8, 6]} />
+            {/* 3. Secondary Diffraction Glow - Diffuse Orange */}
+            <mesh ref={outerGlowRef}>
+                <planeGeometry args={[0.4, 20]} />
                 <meshBasicMaterial
                     color="#FF6B00"
                     transparent
                     opacity={0.15}
                     side={THREE.DoubleSide}
+                    blending={THREE.AdditiveBlending}
                 />
             </mesh>
 
-            {/* Wide ambient glow */}
+            {/* 4. Ambient Haze - Very wide, very faint */}
             <mesh>
-                <planeGeometry args={[2, 6]} />
+                <planeGeometry args={[3, 20]} />
                 <meshBasicMaterial
-                    color="#FF6B00"
+                    color="#FF3300"
                     transparent
-                    opacity={0.05}
+                    opacity={0.03}
                     side={THREE.DoubleSide}
+                    blending={THREE.AdditiveBlending}
+                    depthWrite={false}
                 />
             </mesh>
+
+            {/* High speed particles for the "flow" effect */}
+            <Sparkles
+                count={100}
+                scale={[0.1, 15, 0.1]}
+                size={3}
+                speed={8}
+                opacity={0.8}
+                color="#ffffaa"
+                noise={0.1}
+            />
         </group>
     );
 }
@@ -121,6 +152,7 @@ export function EmberParticles({ count = 50 }: { count?: number }) {
                     count={count}
                     array={particles.positions}
                     itemSize={3}
+                    args={[particles.positions, 3]}
                 />
             </bufferGeometry>
             <pointsMaterial
@@ -150,8 +182,8 @@ export function TakaSymbol({
 
     useFrame((state) => {
         if (groupRef.current) {
-            // Slow self-rotation
-            groupRef.current.rotation.y += 0.005;
+            // Slow self-rotation - handled by parent usually, but adds nice detail
+            // groupRef.current.rotation.y += 0.005; 
         }
     });
 
@@ -189,194 +221,6 @@ export function TakaSymbol({
             <mesh position={[0, 0.06, -0.15]}>
                 <boxGeometry args={[0.08, 0.02, 0.35]} />
                 <meshStandardMaterial color="#606060" metalness={0.8} roughness={0.2} transparent opacity={opacity} />
-            </mesh>
-        </group>
-    );
-}
-
-// ============== PC Component (GPU) - Glowing Orange ==============
-export function GlowingGPU({
-    position,
-    rotation = [0, 0, 0],
-    scale = 1,
-    opacity = 1
-}: {
-    position: [number, number, number];
-    rotation?: [number, number, number];
-    scale?: number;
-    opacity?: number;
-}) {
-    const groupRef = useRef<THREE.Group>(null);
-
-    useFrame((state) => {
-        if (groupRef.current) {
-            groupRef.current.rotation.y += 0.003;
-            groupRef.current.position.y = position[1] + Math.sin(state.clock.elapsedTime * 0.8) * 0.1;
-        }
-    });
-
-    return (
-        <group ref={groupRef} position={position} rotation={rotation} scale={scale}>
-            {/* GPU Body - dark with orange accent */}
-            <mesh>
-                <boxGeometry args={[1.6, 0.35, 1]} />
-                <meshStandardMaterial
-                    color="#1a1a1a"
-                    metalness={0.8}
-                    roughness={0.2}
-                    transparent
-                    opacity={opacity}
-                />
-            </mesh>
-
-            {/* Fans */}
-            <mesh position={[-0.4, 0.2, 0]}>
-                <cylinderGeometry args={[0.35, 0.35, 0.08, 32]} />
-                <meshStandardMaterial color="#0f0f0f" metalness={0.6} roughness={0.4} transparent opacity={opacity} />
-            </mesh>
-            <mesh position={[0.4, 0.2, 0]}>
-                <cylinderGeometry args={[0.35, 0.35, 0.08, 32]} />
-                <meshStandardMaterial color="#0f0f0f" metalness={0.6} roughness={0.4} transparent opacity={opacity} />
-            </mesh>
-
-            {/* RGB Strip - Glowing Orange */}
-            <mesh position={[0, 0.18, 0.45]}>
-                <boxGeometry args={[1.4, 0.04, 0.08]} />
-                <meshStandardMaterial
-                    color="#FF6B00"
-                    emissive="#FF6B00"
-                    emissiveIntensity={2}
-                    transparent
-                    opacity={opacity}
-                />
-            </mesh>
-
-            {/* Edge glow */}
-            <mesh position={[0.75, 0, 0]}>
-                <boxGeometry args={[0.05, 0.3, 0.9]} />
-                <meshStandardMaterial
-                    color="#FF6B00"
-                    emissive="#FF6B00"
-                    emissiveIntensity={1}
-                    transparent
-                    opacity={opacity * 0.5}
-                />
-            </mesh>
-        </group>
-    );
-}
-
-// ============== RAM Module - Glowing Orange ==============
-export function GlowingRAM({
-    position,
-    rotation = [0, 0, 0],
-    scale = 1,
-    opacity = 1
-}: {
-    position: [number, number, number];
-    rotation?: [number, number, number];
-    scale?: number;
-    opacity?: number;
-}) {
-    const groupRef = useRef<THREE.Group>(null);
-
-    useFrame((state) => {
-        if (groupRef.current) {
-            groupRef.current.rotation.z = Math.sin(state.clock.elapsedTime * 0.5) * 0.05;
-            groupRef.current.position.y = position[1] + Math.sin(state.clock.elapsedTime * 0.7 + 1) * 0.08;
-        }
-    });
-
-    return (
-        <group ref={groupRef} position={position} rotation={rotation} scale={scale}>
-            {/* RAM PCB */}
-            <mesh>
-                <boxGeometry args={[0.12, 1, 0.25]} />
-                <meshStandardMaterial color="#1a1a1a" metalness={0.5} roughness={0.5} transparent opacity={opacity} />
-            </mesh>
-
-            {/* Heatspreader */}
-            <mesh position={[0.02, 0.1, 0]}>
-                <boxGeometry args={[0.1, 0.8, 0.27]} />
-                <meshStandardMaterial color="#2d2d2d" metalness={0.85} roughness={0.15} transparent opacity={opacity} />
-            </mesh>
-
-            {/* RGB Top - Glowing Orange */}
-            <mesh position={[0, 0.55, 0]}>
-                <boxGeometry args={[0.13, 0.1, 0.27]} />
-                <meshStandardMaterial
-                    color="#FF6B00"
-                    emissive="#FF6B00"
-                    emissiveIntensity={1.5}
-                    transparent
-                    opacity={opacity}
-                />
-            </mesh>
-        </group>
-    );
-}
-
-// ============== Motherboard - Glowing Orange ==============
-export function GlowingMotherboard({
-    position,
-    rotation = [0, 0, 0],
-    scale = 1,
-    opacity = 1
-}: {
-    position: [number, number, number];
-    rotation?: [number, number, number];
-    scale?: number;
-    opacity?: number;
-}) {
-    const groupRef = useRef<THREE.Group>(null);
-
-    useFrame((state) => {
-        if (groupRef.current) {
-            groupRef.current.rotation.x = -0.3 + Math.sin(state.clock.elapsedTime * 0.4) * 0.03;
-            groupRef.current.position.y = position[1] + Math.sin(state.clock.elapsedTime * 0.6 + 2) * 0.06;
-        }
-    });
-
-    return (
-        <group ref={groupRef} position={position} rotation={rotation} scale={scale}>
-            {/* Main PCB */}
-            <mesh>
-                <boxGeometry args={[2, 0.08, 1.6]} />
-                <meshStandardMaterial color="#1a1a1a" metalness={0.4} roughness={0.6} transparent opacity={opacity} />
-            </mesh>
-
-            {/* Chipset heatsink with glow */}
-            <mesh position={[0.3, 0.12, -0.3]}>
-                <boxGeometry args={[0.4, 0.15, 0.4]} />
-                <meshStandardMaterial
-                    color="#2d2d2d"
-                    metalness={0.8}
-                    roughness={0.2}
-                    transparent
-                    opacity={opacity}
-                />
-            </mesh>
-
-            {/* RGB accent lines */}
-            <mesh position={[-0.8, 0.05, 0]}>
-                <boxGeometry args={[0.02, 0.02, 1.4]} />
-                <meshStandardMaterial
-                    color="#FF6B00"
-                    emissive="#FF6B00"
-                    emissiveIntensity={1.5}
-                    transparent
-                    opacity={opacity}
-                />
-            </mesh>
-            <mesh position={[0, 0.05, 0.7]}>
-                <boxGeometry args={[1.8, 0.02, 0.02]} />
-                <meshStandardMaterial
-                    color="#FF6B00"
-                    emissive="#FF6B00"
-                    emissiveIntensity={1.5}
-                    transparent
-                    opacity={opacity}
-                />
             </mesh>
         </group>
     );
