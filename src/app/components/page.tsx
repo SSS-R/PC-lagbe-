@@ -34,7 +34,7 @@ export default function ComponentsPage() {
                 <aside className="w-full lg:w-64 shrink-0 space-y-8">
                     <div className="glass-card p-6 sticky top-28">
                         <h2 className="text-xl font-bold mb-6 flex items-center gap-2">
-                            <svg className="w-5 h-5 text-[#FF6B00]" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                            <svg className="w-5 h-5 text-[#4f9e97]" fill="none" stroke="currentColor" viewBox="0 0 24 24">
                                 <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M12 6V4m0 2a2 2 0 100 4m0-4a2 2 0 110 4m-6 8a2 2 0 100-4m0 4a2 2 0 110-4m0 4v2m0-6V4m6 6v10m6-2a2 2 0 100-4m0 4a2 2 0 110-4m0 4v2m0-6V4" />
                             </svg>
                             Filters
@@ -47,7 +47,7 @@ export default function ComponentsPage() {
                                 placeholder="Search parts..."
                                 value={searchQuery}
                                 onChange={(e) => setSearchQuery(e.target.value)}
-                                className="w-full bg-neutral-900 border border-neutral-700 rounded-lg px-4 py-2 text-sm focus:border-[#FF6B00] focus:outline-none transition-colors"
+                                className="w-full bg-neutral-900 border border-neutral-700 rounded-lg px-4 py-2 text-sm focus:border-[#4f9e97] focus:outline-none transition-colors"
                             />
                         </div>
 
@@ -60,8 +60,8 @@ export default function ComponentsPage() {
                                         key={category}
                                         onClick={() => setSelectedCategory(category)}
                                         className={`w-full text-left px-3 py-2 rounded-md text-sm transition-all ${selectedCategory === category
-                                                ? 'bg-[#FF6B00]/10 text-[#FF6B00] font-medium'
-                                                : 'text-neutral-400 hover:text-white hover:bg-white/5'
+                                            ? 'bg-[#4f9e97]/10 text-[#4f9e97] font-medium'
+                                            : 'text-neutral-400 hover:text-white hover:bg-white/5'
                                             }`}
                                     >
                                         {category}
@@ -74,7 +74,7 @@ export default function ComponentsPage() {
                         <div className="mt-8">
                             <h3 className="text-sm font-semibold text-neutral-400 mb-3 uppercase tracking-wider">Price Range</h3>
                             <div className="h-1 bg-neutral-800 rounded-full overflow-hidden">
-                                <div className="h-full w-1/2 bg-[#FF6B00] ml-1/4" />
+                                <div className="h-full w-1/2 bg-[#4f9e97] ml-1/4" />
                             </div>
                         </div>
                     </div>
@@ -103,7 +103,7 @@ export default function ComponentsPage() {
                                 exit={{ opacity: 0, scale: 0.9 }}
                                 transition={{ duration: 0.2 }}
                                 key={item.id}
-                                className="glass-card group hover:border-[#FF6B00]/50 transition-all duration-300 hover:-translate-y-1 p-0 overflow-hidden"
+                                className="glass-card group hover:border-[#4f9e97]/50 transition-all duration-300 hover:-translate-y-1 p-0 overflow-hidden"
                             >
                                 {/* Image Placeholder */}
                                 <div className="h-48 bg-neutral-900/50 flex items-center justify-center relative group-hover:bg-neutral-900/30 transition-colors">
@@ -130,7 +130,7 @@ export default function ComponentsPage() {
                                         </div>
                                     </div>
 
-                                    <h3 className="font-bold text-lg mb-4 line-clamp-2 leading-tight group-hover:text-[#FF6B00] transition-colors">
+                                    <h3 className="font-bold text-lg mb-4 line-clamp-2 leading-tight group-hover:text-[#4f9e97] transition-colors">
                                         {item.name}
                                     </h3>
 
@@ -139,7 +139,7 @@ export default function ComponentsPage() {
                                             <span className="text-xs text-neutral-500 block">Best Price</span>
                                             <span className="text-xl font-bold text-white">৳{item.price.toLocaleString()}</span>
                                         </div>
-                                        <button className="p-2 rounded-full bg-white text-black hover:bg-[#FF6B00] hover:text-white transition-colors">
+                                        <button className="p-2 rounded-full bg-white text-black hover:bg-[#4f9e97] hover:text-white transition-colors">
                                             <svg className="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24">
                                                 <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M12 4v16m8-8H4" />
                                             </svg>

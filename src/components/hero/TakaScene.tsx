@@ -71,7 +71,7 @@ export default function TakaScene() {
             <EmberParticles count={150} />
 
             {/* Global Sparkles for depth */}
-            <Sparkles count={50} scale={12} size={2} speed={0.4} opacity={0.5} noise={0.2} color="#FF6B00" />
+            <Sparkles count={50} scale={12} size={2} speed={0.4} opacity={0.5} noise={0.2} color="#4f9e97" />
 
             {/* Flying Items */}
             {items.map(item => (

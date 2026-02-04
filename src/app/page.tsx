@@ -35,7 +35,7 @@ export default function Home() {
         <div
           className="absolute top-0 left-1/2 -translate-x-1/2 w-[600px] h-[300px] pointer-events-none"
           style={{
-            background: 'radial-gradient(ellipse at center, rgba(255, 107, 0, 0.1) 0%, transparent 70%)',
+            background: 'radial-gradient(ellipse at center, rgba(79, 158, 151, 0.1) 0%, transparent 70%)',
           }}
         />
 
@@ -70,7 +70,7 @@ export default function Home() {
               variants={fadeInUp}
               whileHover={{ scale: 1.02, transition: { duration: 0.2 } }}
             >
-              <div className="w-12 h-12 rounded-xl bg-gradient-to-br from-[#FF6B00] to-[#FF8533] flex items-center justify-center mb-6 group-hover:shadow-lg group-hover:shadow-orange-500/30 transition-shadow">
+              <div className="w-12 h-12 rounded-xl bg-gradient-to-br from-[#4f9e97] to-[#6ee1c9] flex items-center justify-center mb-6 group-hover:shadow-lg group-hover:shadow-[rgba(79,158,151,0.3)] transition-shadow">
                 <svg className="w-6 h-6 text-white" fill="none" stroke="currentColor" viewBox="0 0 24 24">
                   <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M9.75 17L9 20l-1 1h8l-1-1-.75-3M3 13h18M5 17h14a2 2 0 002-2V5a2 2 0 00-2-2H5a2 2 0 00-2 2v10a2 2 0 002 2z" />
                 </svg>
@@ -88,8 +88,8 @@ export default function Home() {
               variants={fadeInUp}
               whileHover={{ scale: 1.02, transition: { duration: 0.2 } }}
             >
-              <div className="w-12 h-12 rounded-xl bg-neutral-800 border border-neutral-700 flex items-center justify-center mb-6 group-hover:border-orange-500/50 transition-colors">
-                <svg className="w-6 h-6 text-[#FF6B00]" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+              <div className="w-12 h-12 rounded-xl bg-neutral-800 border border-neutral-700 flex items-center justify-center mb-6 group-hover:border-[#4f9e97]/50 transition-colors">
+                <svg className="w-6 h-6 text-[#4f9e97]" fill="none" stroke="currentColor" viewBox="0 0 24 24">
                   <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M12 8c-1.657 0-3 .895-3 2s1.343 2 3 2 3 .895 3 2-1.343 2-3 2m0-8c1.11 0 2.08.402 2.599 1M12 8V7m0 1v8m0 0v1m0-1c-1.11 0-2.08-.402-2.599-1M21 12a9 9 0 11-18 0 9 9 0 0118 0z" />
                 </svg>
               </div>
@@ -105,8 +105,8 @@ export default function Home() {
               variants={fadeInUp}
               whileHover={{ scale: 1.02, transition: { duration: 0.2 } }}
             >
-              <div className="w-12 h-12 rounded-xl bg-neutral-800 border border-neutral-700 flex items-center justify-center mb-6 group-hover:border-orange-500/50 transition-colors">
-                <svg className="w-6 h-6 text-[#FF6B00]" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+              <div className="w-12 h-12 rounded-xl bg-neutral-800 border border-neutral-700 flex items-center justify-center mb-6 group-hover:border-[#4f9e97]/50 transition-colors">
+                <svg className="w-6 h-6 text-[#4f9e97]" fill="none" stroke="currentColor" viewBox="0 0 24 24">
                   <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M9 12l2 2 4-4m6 2a9 9 0 11-18 0 9 9 0 0118 0z" />
                 </svg>
               </div>
@@ -122,8 +122,8 @@ export default function Home() {
               variants={fadeInUp}
               whileHover={{ scale: 1.02, transition: { duration: 0.2 } }}
             >
-              <div className="w-12 h-12 rounded-xl bg-neutral-800 border border-neutral-700 flex items-center justify-center mb-6 group-hover:border-orange-500/50 transition-colors">
-                <svg className="w-6 h-6 text-[#FF6B00]" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+              <div className="w-12 h-12 rounded-xl bg-neutral-800 border border-neutral-700 flex items-center justify-center mb-6 group-hover:border-[#4f9e97]/50 transition-colors">
+                <svg className="w-6 h-6 text-[#4f9e97]" fill="none" stroke="currentColor" viewBox="0 0 24 24">
                   <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M13 10V3L4 14h7v7l9-11h-7z" />
                 </svg>
               </div>
@@ -142,7 +142,7 @@ export default function Home() {
         <div
           className="absolute inset-0 pointer-events-none"
           style={{
-            background: 'radial-gradient(ellipse at center, rgba(0, 102, 255, 0.08) 0%, transparent 60%)',
+            background: 'radial-gradient(ellipse at center, rgba(79, 158, 151, 0.08) 0%, transparent 60%)',
           }}
         />
 
@@ -174,7 +174,7 @@ export default function Home() {
               <div className="flex-1 h-2 bg-neutral-800 rounded-full relative">
                 <motion.div
                   className="absolute left-0 top-0 h-full rounded-full"
-                  style={{ background: 'var(--gradient-orange)' }}
+                  style={{ background: 'var(--gradient-primary)' }}
                   initial={{ width: "0%" }}
                   whileInView={{ width: "50%" }}
                   transition={{ duration: 1, delay: 0.5, ease: "easeOut" }}
@@ -208,7 +208,7 @@ export default function Home() {
       <footer className="py-12 border-t border-neutral-800">
         <div className="max-w-6xl mx-auto px-6 text-center">
           <p className="text-neutral-500 text-sm">
-            © 2026 Zenfa. Built for Bangladesh PC enthusiasts.
+            © 2026 PC Lagbe?. Built for Bangladesh PC enthusiasts.
           </p>
         </div>
       </footer>

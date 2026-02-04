@@ -31,7 +31,7 @@ export default function BuildPage() {
                     className="mb-12 text-center"
                 >
                     <h1 className="text-4xl md:text-5xl font-bold mb-4">
-                        Build Your <span className="text-gradient-orange">Dream PC</span>
+                        Build Your <span className="text-gradient-primary">Dream PC</span>
                     </h1>
                     <p className="text-neutral-400">
                         Define your budget and needs. AI will handle the rest.
@@ -50,12 +50,12 @@ export default function BuildPage() {
                         <div>
                             <div className="flex justify-between mb-4">
                                 <label className="font-semibold text-lg">Budget</label>
-                                <span className="text-[#FF6B00] font-bold text-xl">৳ {budget.toLocaleString()}</span>
+                                <span className="text-[#4f9e97] font-bold text-xl">৳ {budget.toLocaleString()}</span>
                             </div>
 
                             <div className="relative h-2 bg-neutral-800 rounded-full">
                                 <div
-                                    className="absolute top-0 left-0 h-full bg-gradient-to-r from-[#FF6B00] to-[#FF8533] rounded-full"
+                                    className="absolute top-0 left-0 h-full bg-gradient-to-r from-[#4f9e97] to-[#6ee1c9] rounded-full"
                                     style={{ width: `${(budget / 500000) * 100}%` }}
                                 />
                                 <input
@@ -84,8 +84,8 @@ export default function BuildPage() {
                                         key={type}
                                         onClick={() => setUseCase(type)}
                                         className={`p-4 rounded-xl border transition-all ${useCase === type
-                                                ? 'border-[#FF6B00] bg-[#FF6B00]/10 text-white'
-                                                : 'border-neutral-800 bg-neutral-900/50 text-neutral-400 hover:border-neutral-600'
+                                            ? 'border-[#4f9e97] bg-[#4f9e97]/10 text-white'
+                                            : 'border-neutral-800 bg-neutral-900/50 text-neutral-400 hover:border-neutral-600'
                                             }`}
                                     >
                                         <span className="capitalize font-medium">{type}</span>
@@ -148,7 +148,7 @@ export default function BuildPage() {
                                             <p className="text-neutral-400 text-sm">Optimized for {useCase}</p>
                                         </div>
                                         <div className="text-right">
-                                            <div className="text-2xl font-bold text-[#FF6B00]">৳ {budget}</div>
+                                            <div className="text-2xl font-bold text-[#4f9e97]">৳ {budget}</div>
                                             <div className="text-xs text-neutral-500">Total Estimate</div>
                                         </div>
                                     </div>
@@ -180,7 +180,7 @@ export default function BuildPage() {
 function BuildPart({ type, name, price }: { type: string, name: string, price: number }) {
     return (
         <div className="flex items-center p-3 rounded-lg hover:bg-white/5 transition-colors group">
-            <div className="w-10 h-10 rounded-md bg-neutral-800 flex items-center justify-center text-xs font-bold text-neutral-500 mr-4 group-hover:bg-[#FF6B00]/20 group-hover:text-[#FF6B00] transition-colors">
+            <div className="w-10 h-10 rounded-md bg-neutral-800 flex items-center justify-center text-xs font-bold text-neutral-500 mr-4 group-hover:bg-[#4f9e97]/20 group-hover:text-[#4f9e97] transition-colors">
                 {type.substring(0, 2)}
             </div>
             <div className="flex-1">

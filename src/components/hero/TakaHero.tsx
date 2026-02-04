@@ -9,11 +9,11 @@ import TakaScene from "./TakaScene";
 export default function TakaHero() {
     return (
         <section className="relative w-full h-screen bg-black overflow-hidden">
-            {/* Top gradient glow - orange radial */}
+            {/* Top gradient glow - teal radial */}
             <div
                 className="absolute top-0 left-1/2 -translate-x-1/2 w-[1000px] h-[500px] pointer-events-none"
                 style={{
-                    background: 'radial-gradient(ellipse at center, rgba(255, 107, 0, 0.12) 0%, transparent 60%)',
+                    background: 'radial-gradient(ellipse at center, rgba(79, 158, 151, 0.12) 0%, transparent 60%)',
                 }}
             />
 
@@ -37,7 +37,7 @@ export default function TakaHero() {
                 dpr={[1, 2]}
             >
                 <Suspense fallback={null}>
-                    {/* Lighting - dramatic with orange accent */}
+                    {/* Lighting - dramatic with teal accent */}
                     <ambientLight intensity={0.2} />
                     <spotLight
                         position={[5, 10, 5]}
@@ -47,8 +47,8 @@ export default function TakaHero() {
                         castShadow
                         color="#ffffff"
                     />
-                    {/* Orange rim light from center */}
-                    <pointLight position={[0, 0, 3]} intensity={2} color="#FF6B00" distance={10} />
+                    {/* Teal rim light from center */}
+                    <pointLight position={[0, 0, 3]} intensity={2} color="#4f9e97" distance={10} />
                     {/* Blue accent from edges */}
                     <pointLight position={[-8, 0, 0]} intensity={0.4} color="#0066FF" />
                     <pointLight position={[8, 0, 0]} intensity={0.4} color="#0066FF" />
@@ -66,7 +66,7 @@ export default function TakaHero() {
                 <h1 className="text-5xl md:text-7xl font-bold text-white mb-6 tracking-tight text-center leading-tight">
                     Step into the Future
                     <br />
-                    <span className="text-gradient-orange">of PC Building</span>
+                    <span className="text-gradient-primary">of PC Building</span>
                 </h1>
                 <p className="text-lg md:text-xl text-neutral-400 max-w-xl text-center px-4 mb-10">
                     Transform your budget into the perfect build with AI-powered recommendations and real-time price comparison.

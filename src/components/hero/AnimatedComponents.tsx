@@ -46,11 +46,11 @@ export function EnergyBeam() {
                 />
             </mesh>
 
-            {/* 2. Primary Energy Sheath - Hot Orange */}
+            {/* 2. Primary Energy Sheath - Hot Teal */}
             <mesh ref={glowRef}>
                 <planeGeometry args={[0.08, 20]} />
                 <meshBasicMaterial
-                    color="#FF4800"
+                    color="#4f9e97"
                     transparent
                     opacity={0.8}
                     side={THREE.DoubleSide}
@@ -58,11 +58,11 @@ export function EnergyBeam() {
                 />
             </mesh>
 
-            {/* 3. Secondary Diffraction Glow - Diffuse Orange */}
+            {/* 3. Secondary Diffraction Glow - Diffuse Teal */}
             <mesh ref={outerGlowRef}>
                 <planeGeometry args={[0.4, 20]} />
                 <meshBasicMaterial
-                    color="#FF6B00"
+                    color="#6ee1c9"
                     transparent
                     opacity={0.15}
                     side={THREE.DoubleSide}
@@ -74,7 +74,7 @@ export function EnergyBeam() {
             <mesh>
                 <planeGeometry args={[3, 20]} />
                 <meshBasicMaterial
-                    color="#FF3300"
+                    color="#4f9e97"
                     transparent
                     opacity={0.03}
                     side={THREE.DoubleSide}
@@ -90,7 +90,7 @@ export function EnergyBeam() {
                 size={3}
                 speed={8}
                 opacity={0.8}
-                color="#ffffaa"
+                color="#ccfffc"
                 noise={0.1}
             />
         </group>
@@ -157,7 +157,7 @@ export function EmberParticles({ count = 50 }: { count?: number }) {
             </bufferGeometry>
             <pointsMaterial
                 size={0.08}
-                color="#FF8533"
+                color="#6ee1c9"
                 transparent
                 opacity={0.8}
                 sizeAttenuation

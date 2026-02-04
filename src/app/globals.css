@@ -8,16 +8,16 @@
   /* Core Colors */
   --background: #000000;
   --foreground: #ffffff;
-  
+
   /* Accent Colors */
-  --accent-orange: #FF6B00;
-  --accent-orange-light: #FF8533;
-  --accent-orange-glow: rgba(255, 107, 0, 0.4);
-  
+  --accent-primary: #4f9e97;
+  --accent-secondary: #6ee1c9;
+  --accent-glow: rgba(79, 158, 151, 0.4);
+
   /* Glow Border */
-  --glow-blue: #0066FF;
-  --glow-blue-soft: rgba(0, 102, 255, 0.3);
-  
+  --glow-blue: #4f9e97;
+  --glow-blue-soft: rgba(79, 158, 151, 0.3);
+
   /* Neutrals */
   --neutral-900: #0a0a0a;
   --neutral-800: #1a1a1a;
@@ -25,15 +25,15 @@
   --neutral-600: #404040;
   --neutral-400: #9ca3af;
   --neutral-200: #e5e5e5;
-  
+
   /* Text */
   --text-primary: #ffffff;
   --text-secondary: #9ca3af;
   --text-muted: #6b7280;
-  
+
   /* Gradients */
-  --gradient-orange: linear-gradient(135deg, #FF6B00 0%, #FF8533 100%);
-  --gradient-glow: radial-gradient(ellipse at top, rgba(255, 107, 0, 0.15) 0%, transparent 50%);
+  --gradient-primary: linear-gradient(135deg, #4f9e97 0%, #6ee1c9 100%);
+  --gradient-glow: radial-gradient(ellipse at top, rgba(79, 158, 151, 0.15) 0%, transparent 50%);
 }
 
 @theme inline {
@@ -71,9 +71,9 @@ body {
   content: '';
   position: absolute;
   inset: 0;
-  box-shadow: 
+  box-shadow:
     inset 0 0 60px var(--glow-blue-soft),
-    inset 0 0 120px rgba(0, 102, 255, 0.1);
+    inset 0 0 120px rgba(79, 158, 151, 0.1);
   pointer-events: none;
   z-index: 49;
 }
@@ -82,18 +82,18 @@ body {
    BUTTON STYLES
    ============================================ */
 .btn-primary {
-  background: var(--gradient-orange);
+  background: var(--gradient-primary);
   color: white;
   font-weight: 600;
   padding: 0.75rem 1.75rem;
   border-radius: 0.5rem;
   transition: all 0.3s ease;
-  box-shadow: 0 4px 15px var(--accent-orange-glow);
+  box-shadow: 0 4px 15px var(--accent-glow);
 }
 
 .btn-primary:hover {
   transform: scale(1.05);
-  box-shadow: 0 8px 25px var(--accent-orange-glow);
+  box-shadow: 0 8px 25px var(--accent-glow);
 }
 
 .btn-secondary {
@@ -122,7 +122,7 @@ body {
 }
 
 .glass-card-glow {
-  background: 
+  background:
     var(--gradient-glow),
     rgba(26, 26, 26, 0.8);
   backdrop-filter: blur(12px);
@@ -133,8 +133,8 @@ body {
 /* ============================================
    TEXT GRADIENTS
    ============================================ */
-.text-gradient-orange {
-  background: var(--gradient-orange);
+.text-gradient-primary {
+  background: var(--gradient-primary);
   -webkit-background-clip: text;
   -webkit-text-fill-color: transparent;
   background-clip: text;
@@ -144,13 +144,27 @@ body {
    ANIMATIONS
    ============================================ */
 @keyframes float {
-  0%, 100% { transform: translateY(0px); }
-  50% { transform: translateY(-10px); }
+
+  0%,
+  100% {
+    transform: translateY(0px);
+  }
+
+  50% {
+    transform: translateY(-10px);
+  }
 }
 
 @keyframes pulse-glow {
-  0%, 100% { opacity: 0.6; }
-  50% { opacity: 1; }
+
+  0%,
+  100% {
+    opacity: 0.6;
+  }
+
+  50% {
+    opacity: 1;
+  }
 }
 
 .animate-float {
